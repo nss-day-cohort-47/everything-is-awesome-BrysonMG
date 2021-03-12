@@ -9,6 +9,10 @@ navElement.addEventListener("click", (event) => {
 		filterLegos("Blue")
 	} else if (event.target.id === "showAll") {
 		makeLegoList(useLegos())
+	} else if (event.target.id === "showRed") {
+		filterLegos("Red")
+	} else if (event.target.id === "showGreen") {
+		filterLegos("Green")
 	}
 })
 
