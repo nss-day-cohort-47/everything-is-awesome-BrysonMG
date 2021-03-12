@@ -5,6 +5,42 @@ import { LegoDetail } from './legos/LegoDetail.js';
 
 const navElement = document.querySelector("nav");
 
+navElement.addEventListener("click", event => {
+	if (event.target.id === "search-btn") {
+		let searchTerm = document.querySelector("#search-bar").value;
+		let legoArr = useLegos();
+		let newArr = [];
+
+		for (const eachObj of legoArr) {
+			if (eachObj.LegoId === searchTerm) {
+				newArr.push(eachObj)
+			} else if (eachObj.LegoName.toLowerCase().includes(searchTerm.toLowerCase())) {
+				newArr.push(eachObj)
+			}
+		}
+
+		makeLegoList(newArr)
+		
+		if (newArr.length === 0) {
+			alert("No Results")
+		}
+		
+		
+	}
+  }
+)
+
+// Make "Enter" click the search button///////////////////
+const input = document.querySelector("#search-bar");
+
+input.addEventListener("keyup", event => {
+	if (event.keyCode === 13) { //keyCode 13 is the enter key
+		event.preventDefault();
+		document.querySelector("#search-btn").click();
+	}
+})
+//////////////////////////////////////////////////////////
+
 navElement.addEventListener("click", (event) => {
 	if (event.target.id === "showBlue") {
 		filterLegos("Blue")
